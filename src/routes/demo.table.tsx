@@ -11,7 +11,7 @@ import {
 } from '@tanstack/react-table'
 import { compareItems, rankItem } from '@tanstack/match-sorter-utils'
 
-import { makeData } from '../data/demo-table-data'
+import { makeData } from '../data/demo-table-data.ts'
 
 import type {
   Column,
@@ -22,7 +22,7 @@ import type {
 } from '@tanstack/react-table'
 import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
-import type { Person } from '../data/demo-table-data'
+import type { Person } from '../data/demo-table-data.ts'
 
 export const Route = createFileRoute('/demo/table')({
   component: TableDemo,
@@ -38,7 +38,7 @@ declare module '@tanstack/react-table' {
 }
 
 // Define a custom fuzzy filter function that will apply ranking info to rows (using match-sorter utils)
-const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+const fuzzyFilter: FilterFn<Person> = (row, columnId, value, addMeta) => {
   // Rank the item
   const itemRank = rankItem(row.getValue(columnId), value)
 
@@ -52,7 +52,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 }
 
 // Define a custom fuzzy sort function that will sort by rank if the row has ranking information
-const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
+const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
   let dir = 0
 
   // Only sort by rank if the column has ranking information
@@ -75,7 +75,7 @@ function TableDemo() {
   )
   const [globalFilter, setGlobalFilter] = React.useState('')
 
-  const columns = React.useMemo<ColumnDef<Person, any>[]>(
+  const columns = React.useMemo<ColumnDef<Person, unknown>[]>(
     () => [
       {
         accessorKey: 'id',
@@ -220,28 +220,28 @@ function TableDemo() {
       </div>
       <div className="h-4" />
       <div className="flex flex-wrap items-center gap-2 text-gray-200">
-        <button
+        <button type="button"
           className="px-3 py-1 bg-gray-800 rounded-md hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => table.setPageIndex(0)}
           disabled={!table.getCanPreviousPage()}
         >
           {'<<'}
         </button>
-        <button
+        <button type="button"
           className="px-3 py-1 bg-gray-800 rounded-md hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           {'<'}
         </button>
-        <button
+        <button type="button"
           className="px-3 py-1 bg-gray-800 rounded-md hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
           {'>'}
         </button>
-        <button
+        <button type="button"
           className="px-3 py-1 bg-gray-800 rounded-md hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           disabled={!table.getCanNextPage()}
@@ -285,13 +285,13 @@ function TableDemo() {
         {table.getPrePaginationRowModel().rows.length} Rows
       </div>
       <div className="mt-4 flex gap-2">
-        <button
+        <button type="button"
           onClick={() => rerender()}
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
         >
           Force Rerender
         </button>
-        <button
+        <button type="button"
           onClick={() => refreshData()}
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
         >
@@ -312,7 +312,7 @@ function TableDemo() {
   )
 }
 
-function Filter({ column }: { column: Column<any, unknown> }) {
+function Filter({ column }: { column: Column<Person, unknown> }) {
   const columnFilterValue = column.getFilterValue()
 
   return (
