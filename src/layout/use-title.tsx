@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 interface UsePageTitleOptions {
   restoreOnUnmount?: boolean;
@@ -13,11 +13,11 @@ function usePageTitle(
   options: UsePageTitleOptions = DEFAULT_OPTIONS,
 ) {
   const prevTitleRef = useRef(
-    typeof document !== "undefined" ? document.title : "",
+    typeof document !== 'undefined' ? document.title : '',
   );
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
+    if (typeof document === 'undefined') return;
 
     document.title = `${title} - Quri`;
 

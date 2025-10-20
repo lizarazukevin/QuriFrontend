@@ -1,11 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import useTitle from "@/layout/use-title.tsx";
+import { createFileRoute } from '@tanstack/react-router';
+import useTitle from '@/layout/use-title.tsx';
 
-export const Route = createFileRoute("/home")({
+export const Route = createFileRoute('/home')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  useTitle("Home");
+  useTitle('Home');
   return <div>Hello "/home"!</div>;
 }

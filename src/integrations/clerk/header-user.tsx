@@ -3,7 +3,7 @@ import {
   SignedOut,
   SignInButton,
   UserButton,
-} from "@clerk/clerk-react";
+} from '@clerk/clerk-react';
 
 export default function HeaderUser() {
   return (
