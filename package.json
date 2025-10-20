@@ -8,9 +8,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest run",
-    "format": "biome format",
-    "lint": "biome lint",
-    "check": "biome check"
+    "format": "deno fmt",
+    "lint": "deno lint"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.49.0",
