@@ -5,8 +5,8 @@ Welcome to your new TanStack app!
 To run this application:
 
 ```bash
-npm install
-npm run start
+bun install
+bun run dev
 ```
 
 # Building For Production
@@ -14,7 +14,7 @@ npm run start
 To build this application for production:
 
 ```bash
-npm run build
+bun run build
 ```
 
 ## Testing
@@ -23,7 +23,7 @@ This project uses [Vitest](https://vitest.dev/) for testing. You can run the
 tests with:
 
 ```bash
-npm run test
+bun run test
 ```
 
 ## Styling
@@ -32,13 +32,10 @@ This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
 
 ## Linting & Formatting
 
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The
-following scripts are available:
+This project uses [Biome](https://biomejs.dev/) for linting and formatting. Run:
 
 ```bash
-npm run lint
-npm run format
-npm run check
+bun biome check .
 ```
 
 ## Shadcn
@@ -46,7 +43,7 @@ npm run check
 Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
 
 ```bash
-pnpx shadcn@latest add button
+bunx shadcn@latest add button
 ```
 
 ## Setting up Clerk
@@ -170,7 +167,7 @@ integrating it into you application is a breeze.
 First add your dependencies:
 
 ```bash
-npm install @tanstack/react-query @tanstack/react-query-devtools
+bun add @tanstack/react-query @tanstack/react-query-devtools
 ```
 
 Next we'll need to create a query client and provider. We recommend putting
@@ -253,7 +250,7 @@ starting point for your project.
 First you need to add TanStack Store as a dependency:
 
 ```bash
-npm install @tanstack/store
+bun add @tanstack/store
 ```
 
 Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
@@ -323,11 +320,6 @@ like we would any other store using the `useStore` hook.
 
 You can find out everything you need to know on how to use TanStack Store in the
 [TanStack Store documentation](https://tanstack.com/store/latest).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a
-starting point for you to play around with the features you've installed.
 
 # Learn More
 

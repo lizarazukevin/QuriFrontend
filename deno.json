@@ -1,9 +1,0 @@
-{
-  "lint": {
-    "exclude": ["src/routeTree.gen.ts"]
-  },
-  "fmt": {
-    "singleQuote": true,
-    "exclude": ["src/routeTree.gen.ts"]
-  }
-}

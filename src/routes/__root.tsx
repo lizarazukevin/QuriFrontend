@@ -1,72 +1,24 @@
-import {
-  createRootRouteWithContext,
-  HeadContent,
-  Scripts,
-} from '@tanstack/react-router';
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-import ClerkProvider from '../integrations/clerk/provider.tsx';
-
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools.tsx';
-
-import appCss from '../styles.css?url';
-
-import type { QueryClient } from '@tanstack/react-query';
-
-interface MyRouterContext {
+interface RouterContext {
   queryClient: QueryClient;
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
-  head: () => ({
-    meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: 'TanStack Start Starter',
-      },
-    ],
-    links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
-    ],
-  }),
-
-  shellComponent: RootDocument,
+export const Route = createRootRouteWithContext<RouterContext>()({
+  component: RootComponent,
 });
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootComponent() {
+    const { queryClient } = Route.useRouteContext();
+
   return (
-    <html lang='en'>
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <ClerkProvider>
-          {children}
-          <ReactQueryDevtools
-            config={{
-              position: 'bottom-left',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
-        </ClerkProvider>
-        <Scripts />
-      </body>
-    </html>
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+        <ReactQueryDevtools />
+        <TanStackRouterDevtools />
+      </QueryClientProvider>
   );
 }
